@@ -1,0 +1,82 @@
+@import url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/NanumSquareNeo-Variable.css');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Pretendard:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Pretendard", "Inter", sans-serif;
+  --font-display: "NanumSquareNeo", sans-serif;
+  
+  --color-ai-navy: #0a0c1a;
+  --color-ai-cyan: #22d3ee;
+  --color-ai-blue: #3b82f6;
+  --color-ai-purple: #8b5cf6;
+}
+
+@layer components {
+  .glass-card {
+    background-color: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.25rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  
+  .glass-card-hover {
+    @apply hover:bg-white/10 hover:border-white/20 hover:shadow-[0_0_40px_rgba(34,211,238,0.15)] hover:-translate-y-1;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-br from-ai-cyan via-ai-blue to-ai-purple font-extrabold;
+  }
+
+  .tech-border {
+    @apply relative overflow-hidden;
+  }
+  
+  .tech-border::before {
+    content: '';
+    @apply absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-ai-cyan opacity-50;
+  }
+  
+  .tech-border::after {
+    content: '';
+    @apply absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-ai-purple opacity-50;
+  }
+
+  .grid-pattern {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+}
+
+body {
+  @apply bg-ai-navy text-white min-h-screen selection:bg-ai-cyan selection:text-ai-navy font-sans antialiased;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print, 
+  header, 
+  footer, 
+  nav, 
+  button {
+    display: none !important;
+  }
+  .glass-card {
+    background: white !important;
+    border: 1px solid #ddd !important;
+    backdrop-filter: none !important;
+    color: black !important;
+    box-shadow: none !important;
+  }
+  .text-gradient {
+    background: none !important;
+    -webkit-text-fill-color: black !important;
+    color: black !important;
+  }
+}
